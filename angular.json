@@ -89,5 +89,8 @@
       }
     }
   },
-  "defaultProject": "jestTest"
+  "defaultProject": "jestTest",
+  "cli": {
+    "analytics": false
+  }
 }
