@@ -1,1 +1,12 @@
-<p>product works!</p>
+<div class="container">
+  <p class="title">{{title}}</p>
+  <div class="coupon" (click)="getcoupon()">coupon</div>
+  <div class="fakeImg"></div>
+  <div class="button-area">
+    <button (click)="minus()">-</button>
+    <div (ngModel)="productCount" class="number-show">{{productCount}}</div>
+    <button (click)="add()">+</button>
+  </div>
+  <button class="add-button" (click)="addcart()">加入購物車</button>
+
+</div>
