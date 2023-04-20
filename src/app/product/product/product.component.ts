@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { product } from 'src/app/interfaces/product';
+import { CartServiceService } from 'src/app/services/cart-service.service';
 
 @Component({
   selector: 'app-product',
@@ -26,6 +27,8 @@ export class ProductComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
+    private cartService : CartServiceService,
+
   ) { }
 
   ngOnInit(): void {
@@ -99,6 +102,7 @@ export class ProductComponent implements OnInit {
       productId: item.productId
     }
     console.log(abcArray)
+    this.cartService.setProduct(abcArray)
     // console.log(item)
     // console.log(this.productCount)
   }

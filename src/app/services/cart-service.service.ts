@@ -12,6 +12,7 @@ export class CartServiceService {
 
   setProduct(product:any) {
     this.Info.push(product)
+    console.log(this.Info)
   }
 
   getProduct() {

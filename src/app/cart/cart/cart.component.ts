@@ -9,9 +9,11 @@ import { CartServiceService } from 'src/app/services/cart-service.service';
 export class CartComponent {
 
   cartProduct: any[] = []
+  checkOn: boolean = false
+  buyProduct: any[] = []
+  cartProduct: any[] = []
   showNumber: number = 1
   items: string[] = ['AAA', 'BBB', 'CCC', 'DDD', 'EEE']
-
 
   constructor(
     private cartService: CartServiceService,
@@ -22,6 +24,31 @@ export class CartComponent {
     console.log(this.cartService.getProduct())
     this.cartProduct = this.cartService.getProduct()
   }
+
+  deleteAll(): void {
+    this.cartProduct = []
+    this.cartService.Info = []
+  }
+
+  selectAll(): void {
+    this.checkOn = true
+  }
+
+  take($event: any, item: any) {
+    // console.log($event, item)
+    if ($event) {
+      this.buy(item)
+    }
+  }
+
+  buy(item: any): void {
+    this.buyProduct.push(item)
+  }
+
+  showCart(){
+    console.log(this.buyProduct)
+  }
+
 
   add(): void {
   }
