@@ -5,6 +5,7 @@ import { CartRoutingModule } from './cart-routing.module';
 import { CartComponent } from './cart/cart.component';
 
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
   imports: [
     CommonModule,
     CartRoutingModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatSelectModule
   ]
 })
 export class CartModule { }

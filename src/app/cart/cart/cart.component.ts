@@ -8,17 +8,25 @@ import { CartServiceService } from 'src/app/services/cart-service.service';
 })
 export class CartComponent {
 
-  cartProduct : any[] =[]
+  cartProduct: any[] = []
+  showNumber: number = 1
+  items: string[] = ['AAA', 'BBB', 'CCC', 'DDD', 'EEE']
 
 
   constructor(
-    private cartService : CartServiceService,
+    private cartService: CartServiceService,
   ) { }
 
   ngOnInit(): void {
     this.cartService.getProduct()
     console.log(this.cartService.getProduct())
     this.cartProduct = this.cartService.getProduct()
+  }
+
+  add(): void {
+  }
+
+  minus(): void {
   }
 
 }

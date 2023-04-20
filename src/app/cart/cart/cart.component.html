@@ -6,7 +6,21 @@
   </div>
 
   <div class="list-area">
-    <mat-checkbox>text</mat-checkbox>
-
+    <div class="list">
+      <mat-checkbox></mat-checkbox>
+      <p>productName</p>
+      <div class="number-button-area">
+        <button (click)="minus()">-</button>
+        <div (ngModel)="showNumber" class="number-show">{{showNumber}}</div>
+        <button (click)="add()">+</button>
+      </div>
+    </div>
   </div>
+  <div class="coupon-select">
+    <mat-label>Choose coupon</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let item of items" value="option1">{{item}}</mat-option>
+    </mat-select>
+  </div>
+  <button class="buy-button">結帳</button>
 </div>
