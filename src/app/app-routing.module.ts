@@ -6,8 +6,7 @@ const routes: Routes = [
 
   {
     path: '',
-    component: ProductComponent,
-  }
+    loadChildren:() =>import('./product/product.module').then(m=>m.ProductModule)  }
 
 ];
 
