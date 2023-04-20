@@ -4,6 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
+    NoopAnimationsModule,
   ],
   exports: [
     FormsModule,

@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { CartRoutingModule } from './cart-routing.module';
 import { CartComponent } from './cart/cart.component';
 
+import { MatCheckboxModule } from '@angular/material/checkbox';
+
 
 @NgModule({
   declarations: [
@@ -11,7 +13,8 @@ import { CartComponent } from './cart/cart.component';
   ],
   imports: [
     CommonModule,
-    CartRoutingModule
+    CartRoutingModule,
+    MatCheckboxModule
   ]
 })
 export class CartModule { }
