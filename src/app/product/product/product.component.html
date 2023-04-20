@@ -1,12 +1,15 @@
-<div class="container">
-  <!-- <p class="title">{{title}}</p> -->
+<div class="container" *ngFor="let item of productInfo ; let i = index"  >
+  {{item.productId}}
+  <p class="title">{{item.productName}}</p>
   <div class="coupon" (click)="getcoupon()">coupon</div>
   <div class="fakeImg"></div>
+  <div>{{item.productPrice}}</div>
   <div class="button-area">
     <button (click)="minus()">-</button>
     <div (ngModel)="productCount" class="number-show">{{productCount}}</div>
     <button (click)="add()">+</button>
   </div>
-  <button class="add-button" (click)="addcart()">加入購物車</button>
-
+  <button class="add-button" (click)="addcart(item)">加入購物車</button>
 </div>
+
+
