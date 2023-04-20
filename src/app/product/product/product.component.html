@@ -1,15 +1,16 @@
-<div class="container" *ngFor="let item of productInfo ; let i = index"  >
-  {{item.productId}}
-  <p class="title">{{item.productName}}</p>
-  <div class="coupon" (click)="getcoupon()">coupon</div>
-  <div class="fakeImg"></div>
-  <div>{{item.productPrice}}</div>
-  <div class="button-area">
-    <button (click)="minus()">-</button>
-    <div (ngModel)="productCount" class="number-show">{{productCount}}</div>
-    <button (click)="add()">+</button>
+<div class="container-main">
+  <div class="container" *ngFor="let item of productInfo ; let i = index">
+    {{item.productId}}
+    <h2 class="title">{{item.productName}}</h2>
+    <div class="coupon" (click)="getcoupon()">coupon</div>
+    <div class="fakeImg"></div>
+    <h3>NT. {{item.productPrice}}</h3>
+    <div>{{item.productDesc}}</div>
+    <div class="button-area">
+      <button (click)="minus(item)">-</button>
+      <div (ngModel)="item.productCount" class="number-show">{{item.productCount}}</div>
+      <button (click)="add(item)">+</button>
+    </div>
+    <button class="add-button" (click)="addcart(item)">加入購物車</button>
   </div>
-  <button class="add-button" (click)="addcart(item)">加入購物車</button>
 </div>
-
-
