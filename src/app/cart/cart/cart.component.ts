@@ -11,7 +11,6 @@ export class CartComponent {
   cartProduct: any[] = []
   checkOn: boolean = false
   buyProduct: any[] = []
-  cartProduct: any[] = []
   showNumber: number = 1
   items: string[] = ['AAA', 'BBB', 'CCC', 'DDD', 'EEE']
 
@@ -50,10 +49,12 @@ export class CartComponent {
   }
 
 
-  add(): void {
+  add(item: any): void {
+    item.productCount++
   }
 
-  minus(): void {
+  minus(item: any): void {
+    if (item.productCount > 1) item.productCount--
   }
 
 }
