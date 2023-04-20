@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
 import { product } from 'src/app/interfaces/product';
 
 @Component({
@@ -22,7 +23,10 @@ export class ProductComponent implements OnInit {
     productPrice: new FormControl(1234),
   });
 
-  constructor() { }
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+  ) { }
 
   ngOnInit(): void {
 
@@ -111,6 +115,8 @@ export class ProductComponent implements OnInit {
     window.alert('成功領取!')
   }
 
-
+  goCart():void{
+    this.router.navigate(['cart'], { relativeTo: this.route });
+  }
 
 }

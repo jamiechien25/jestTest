@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CartServiceService } from 'src/app/services/cart-service.service';
 
 @Component({
   selector: 'app-cart',
@@ -6,5 +7,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent {
+
+  cartProduct : any[] =[]
+
+
+  constructor(
+    private cartService : CartServiceService,
+  ) { }
+
+  ngOnInit(): void {
+    this.cartService.getProduct()
+    console.log(this.cartService.getProduct())
+    this.cartProduct = this.cartService.getProduct()
+  }
 
 }
