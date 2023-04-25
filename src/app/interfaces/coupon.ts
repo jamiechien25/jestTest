@@ -5,10 +5,9 @@ export interface coupon {
   priceOff: number;         //單一品項折價 ex: 10,20,30
   deliveryFree: boolean;
 }
-
-const coupon = [
+  const couponData = [
   {
-    couponid1:
+    productNo1:
     {
       couponId: '1',
       couponType: '1',
@@ -18,7 +17,7 @@ const coupon = [
     }
   },
   {
-    couponid2:
+    productNo2:
     {
       couponId: '2',
       couponType: '2',
@@ -28,7 +27,7 @@ const coupon = [
     }
   },
   {
-    couponid3:
+    productNo3:
     {
       couponId: '3',
       couponType: '2',
@@ -38,7 +37,7 @@ const coupon = [
     }
   },
   {
-    couponid4:
+    productNo4:
     {
       couponId: '4',
       couponType: '2',
