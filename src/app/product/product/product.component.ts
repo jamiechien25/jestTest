@@ -27,7 +27,7 @@ export class ProductComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private cartService : CartServiceService,
+    private cartService: CartServiceService,
 
   ) { }
 
@@ -115,11 +115,14 @@ export class ProductComponent implements OnInit {
     if (item.productCount > 1) item.productCount--
   }
 
-  getcoupon(): void {
+  getcoupon(item: any): void {
+    this.cartService.couponList.find(el => {
+      return el.productId == item
+    })
     window.alert('成功領取!')
   }
 
-  goCart():void{
+  goCart(): void {
     this.router.navigate(['cart'], { relativeTo: this.route });
   }
 

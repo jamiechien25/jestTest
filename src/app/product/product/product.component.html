@@ -2,7 +2,7 @@
   <div class="container" *ngFor="let item of productInfo ; let i = index">
     {{item.productId}}
     <h2 class="title">{{item.productName}}</h2>
-    <div class="coupon" (click)="getcoupon()">coupon</div>
+    <div class="coupon" (click)="getcoupon(item.productId)">coupon</div>
     <div class="fakeImg"></div>
     <h3>NT. {{item.productPrice}}</h3>
     <div>{{item.productDesc}}</div>
