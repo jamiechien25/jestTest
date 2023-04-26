@@ -1,14 +1,15 @@
+<button (click)="goProduct()" style="width: 100px; height: 30px; background-color: #009dff;">返回</button>
 <div class="container">
 
 
   <div class="button-area">
-    <button (click)="selectAll()" >一鍵全選</button>
+    <button (click)="selectAll()">一鍵全選</button>
     <button (click)="deleteAll()">一鍵清空</button>
   </div>
 
   <div class="list-area">
     <div class="list" *ngFor="let item of cartProduct ; let i = index">
-      <mat-checkbox (change)="take($event.checked,item)" [checked] = "checkOn" ></mat-checkbox>
+      <mat-checkbox (change)="take($event.checked,item)" [checked]="checkOn"></mat-checkbox>
       <p>{{item.productName}}</p>
       <div class="number-button-area">
         <button (click)="minus(item)">-</button>
@@ -16,13 +17,13 @@
         <button (click)="add(item)">+</button>
       </div>
     </div>
-  </div >
+  </div>
 
 
 
 
 
-<!--
+  <!--
 <div *ngFor="let item of cartProduct ; let i = index">
   {{item.productId}}
   <mat-checkbox (change)="take($event.checked,item)" [checked] = "checkOn"  >text</mat-checkbox>

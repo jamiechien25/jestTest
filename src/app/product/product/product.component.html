@@ -1,3 +1,4 @@
+<button (click)="goCart()" style="width: 100px; height: 30px; background-color: #ffbf00;">進入購物車</button>
 <div class="container-main">
   <div class="container" *ngFor="let item of productInfo ; let i = index">
     {{item.productId}}
@@ -14,5 +15,3 @@
     <button class="add-button" (click)="addcart(item)">加入購物車</button>
   </div>
 </div>
-
-<button (click)="goCart()">進入購物車</button>

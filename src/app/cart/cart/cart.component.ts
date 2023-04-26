@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CartServiceService } from 'src/app/services/cart-service.service';
 
 @Component({
@@ -15,6 +16,8 @@ export class CartComponent {
   items: string[] = ['AAA', 'BBB', 'CCC', 'DDD', 'EEE']
 
   constructor(
+    private router: Router,
+    private route: ActivatedRoute,
     private cartService: CartServiceService,
   ) { }
 
@@ -44,7 +47,7 @@ export class CartComponent {
     this.buyProduct.push(item)
   }
 
-  showCart(){
+  showCart() {
     console.log(this.buyProduct)
   }
 
@@ -55,6 +58,10 @@ export class CartComponent {
 
   minus(item: any): void {
     if (item.productCount > 1) item.productCount--
+  }
+
+  goProduct(): void {
+    this.router.navigate(['../'], { relativeTo: this.route });
   }
 
 }
