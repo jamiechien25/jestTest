@@ -15,7 +15,8 @@ export class CartComponent {
   settleProduct: any[] = []   //最後要結算的商品
   showNumber: number = 1
   items: any;
-  checkAll: boolean = false
+  checkAll: boolean = false;
+  totalAmt: any;
 
   form1 = new FormGroup({
     check: new FormControl(''),
@@ -32,6 +33,9 @@ export class CartComponent {
     this.cartProduct = this.cartService.getProduct()
     this.items = this.cartService.couponList
     console.log('this.items', this.items)
+    this.totalAmt = this.cartService.Info.reduce((total, { productPrice, productCount }) => {
+      return total + productPrice * productCount
+    }, 0)
   }
 
   deleteAll(): void {
@@ -61,7 +65,7 @@ export class CartComponent {
   showCart() {
     if (this.checkAll) {
       this.settleProduct = this.cartProduct
-    }else {
+    } else {
       this.settleProduct = this.buyProduct
     }
     console.log(this.settleProduct)

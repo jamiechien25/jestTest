@@ -8,18 +8,18 @@
   </div>
 
   <form [formGroup]="form1">
-  <div class="list-area">
-    <div class="list" *ngFor="let item of cartProduct ; let i = index">
-      <mat-checkbox formControlName="check" (change)="take($event.checked,item)" ></mat-checkbox>
-      <p>{{item.productName}}</p>
-      <div class="number-button-area">
-        <button (click)="minus(item)">-</button>
-        <div (ngModel)="item.productCount" class="number-show">{{item.productCount}}</div>
-        <button (click)="add(item)">+</button>
+    <div class="list-area">
+      <div class="list" *ngFor="let item of cartProduct ; let i = index">
+        <mat-checkbox formControlName="check" (change)="take($event.checked,item)"></mat-checkbox>
+        <p>{{item.productName}}</p>
+        <div class="number-button-area">
+          <button (click)="minus(item)">-</button>
+          <div (ngModel)="item.productCount" class="number-show">{{item.productCount}}</div>
+          <button (click)="add(item)">+</button>
+        </div>
       </div>
     </div>
-  </div>
-</form>
+  </form>
 
 
   <div class="coupon-select">
@@ -28,8 +28,10 @@
       <mat-option *ngFor="let item of items" [value]="item.couponId">{{item.couponDesc}}</mat-option>
     </mat-select>
   </div>
-  <button (click)="showCart()" class="buy-button">結帳</button>
 
+  <p style="margin: 10px;">總金額 : {{totalAmt}}</p>
+
+  <button (click)="showCart()" class="buy-button">結帳</button>
 </div>
 
 
@@ -37,5 +39,3 @@
 <div *ngFor="let settle of settleProduct">
   <div>{{settle.productName}} <span>${{settle.productPrice}}</span></div>
 </div>
-
-
