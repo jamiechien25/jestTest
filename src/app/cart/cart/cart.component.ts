@@ -13,7 +13,7 @@ export class CartComponent {
   checkOn: boolean = false
   buyProduct: any[] = []
   showNumber: number = 1
-  items: string[] = ['AAA', 'BBB', 'CCC', 'DDD', 'EEE']
+  items: any;
 
   constructor(
     private router: Router,
@@ -25,6 +25,8 @@ export class CartComponent {
     this.cartService.getProduct()
     console.log(this.cartService.getProduct())
     this.cartProduct = this.cartService.getProduct()
+    this.items = this.cartService.couponList
+    console.log('this.items', this.items)
   }
 
   deleteAll(): void {

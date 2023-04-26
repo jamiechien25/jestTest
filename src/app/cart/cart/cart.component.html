@@ -32,7 +32,7 @@
   <div class="coupon-select">
     <mat-label>Choose coupon</mat-label>
     <mat-select>
-      <mat-option *ngFor="let item of items" value="option1">{{item}}</mat-option>
+      <mat-option *ngFor="let item of items" [value]="item.couponId">{{item.couponDesc}}</mat-option>
     </mat-select>
   </div>
   <button (click)="showCart()" class="buy-button">結帳</button>
