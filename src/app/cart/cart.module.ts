@@ -6,6 +6,7 @@ import { CartComponent } from './cart/cart.component';
 
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -16,7 +17,9 @@ import { MatSelectModule } from '@angular/material/select';
     CommonModule,
     CartRoutingModule,
     MatCheckboxModule,
-    MatSelectModule
+    MatSelectModule,
+    ReactiveFormsModule,
+    FormsModule,
   ]
 })
 export class CartModule { }

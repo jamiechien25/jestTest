@@ -7,9 +7,10 @@
     <button (click)="deleteAll()">一鍵清空</button>
   </div>
 
+  <form [formGroup]="form1">
   <div class="list-area">
     <div class="list" *ngFor="let item of cartProduct ; let i = index">
-      <mat-checkbox (change)="take($event.checked,item)" [checked]="checkOn"></mat-checkbox>
+      <mat-checkbox formControlName="check" (change)="take($event.checked,item)" ></mat-checkbox>
       <p>{{item.productName}}</p>
       <div class="number-button-area">
         <button (click)="minus(item)">-</button>
@@ -18,16 +19,8 @@
       </div>
     </div>
   </div>
+</form>
 
-
-
-
-
-  <!--
-<div *ngFor="let item of cartProduct ; let i = index">
-  {{item.productId}}
-  <mat-checkbox (change)="take($event.checked,item)" [checked] = "checkOn"  >text</mat-checkbox>
-</div> -->
 
   <div class="coupon-select">
     <mat-label>Choose coupon</mat-label>
@@ -38,3 +31,11 @@
   <button (click)="showCart()" class="buy-button">結帳</button>
 
 </div>
+
+
+<p>結帳商品</p>
+<div *ngFor="let settle of settleProduct">
+  <div>{{settle.productName}} <span>${{settle.productPrice}}</span></div>
+</div>
+
+

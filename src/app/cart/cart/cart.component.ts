@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CartServiceService } from 'src/app/services/cart-service.service';
 
@@ -9,11 +10,16 @@ import { CartServiceService } from 'src/app/services/cart-service.service';
 })
 export class CartComponent {
 
-  cartProduct: any[] = []
-  checkOn: boolean = false
-  buyProduct: any[] = []
+  cartProduct: any[] = []     //商品頁加到購物車的所有商品
+  buyProduct: any[] = []      //cart頁面加到結帳的商品
+  settleProduct: any[] = []   //最後要結算的商品
   showNumber: number = 1
   items: any;
+  checkAll: boolean = false
+
+  form1 = new FormGroup({
+    check: new FormControl(''),
+  });
 
   constructor(
     private router: Router,
@@ -23,7 +29,6 @@ export class CartComponent {
 
   ngOnInit(): void {
     this.cartService.getProduct()
-    console.log(this.cartService.getProduct())
     this.cartProduct = this.cartService.getProduct()
     this.items = this.cartService.couponList
     console.log('this.items', this.items)
@@ -35,11 +40,15 @@ export class CartComponent {
   }
 
   selectAll(): void {
-    this.checkOn = true
+    this.form1.get('check')?.setValue(true)
+    if (this.form1.get('check')?.value == true) {
+      this.checkAll = true
+    }
   }
 
   take($event: any, item: any) {
-    // console.log($event, item)
+    console.log(this.form1.get('check')?.value)
+    console.log($event, item)
     if ($event) {
       this.buy(item)
     }
@@ -50,7 +59,12 @@ export class CartComponent {
   }
 
   showCart() {
-    console.log(this.buyProduct)
+    if (this.checkAll) {
+      this.settleProduct = this.cartProduct
+    }else {
+      this.settleProduct = this.buyProduct
+    }
+    console.log(this.settleProduct)
   }
 
 
@@ -65,5 +79,7 @@ export class CartComponent {
   goProduct(): void {
     this.router.navigate(['../'], { relativeTo: this.route });
   }
+
+
 
 }
