@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { product } from 'src/app/interfaces/product';
 import { CartServiceService } from 'src/app/services/cart-service.service';
 
 @Component({
@@ -10,17 +11,18 @@ import { CartServiceService } from 'src/app/services/cart-service.service';
 })
 export class CartComponent {
 
-  cartProduct: any[] = []     //商品頁加到購物車的所有商品
-  buyProduct: any[] = []      //cart頁面加到結帳的商品
-  settleProduct: any[] = []   //最後要結算的商品
+  cartProduct: product[] = []     //商品頁加到購物車的所有商品
+  buyProduct: product[] = []      //cart頁面加到結帳的商品
+  settleProduct: product[] = []   //最後要結算的商品
   showNumber: number = 1
   items: any;
   checkAll: boolean = false;
   originalPrice: any;
   showPrice: any;
+  product: any
+  event:any
 
   form1 = new FormGroup({
-    check: new FormControl(''),
     couponId: new FormControl('')
   });
 
@@ -46,6 +48,10 @@ export class CartComponent {
       return total + item.productPrice * item.productCount
     }, 0)
     this.showPrice = this.originalPrice
+    this.cartProduct.forEach(x => {
+      this.form1.addControl('check' + x.productId, new FormControl(false));
+    })
+    console.log(this.form1.controls);
   }
 
   deleteAll(): void {
@@ -54,33 +60,34 @@ export class CartComponent {
   }
 
   selectAll(): void {
-    this.form1.get('check')?.setValue(true)
-    // if (this.form1.get('check')?.value == true) {
-    //   this.checkAll = true
-    // }
+    this.cartProduct.forEach(x => {
+      this.form1.get('check' + x.productId)?.setValue(true);
+    })
   }
 
-  take($event: any, item: any) {
-    console.log(this.form1.get('check')?.value)
-    console.log($event, item)
-    if ($event) {
-      this.buy(item)
-    }
-  }
 
   buy(item: any): void {
     this.buyProduct.push(item)
   }
 
-  showCart() {
-    if (this.checkAll) {
-      this.settleProduct = this.cartProduct
+  take($event: any, item: any) {
+    this.event = $event
+    console.log($event)
+    console.log($event, item)
+
+    if (this.form1.get('check' + item.productId)?.value) {
+      this.buy(item)
     } else {
-      this.settleProduct = this.buyProduct
+      this.buyProduct = this.buyProduct.filter(x => x.productId !== item.productId);
     }
-    console.log(this.settleProduct)
+
+    this.cartService.setCheckOut(this.buyProduct)
 
   }
+
+
+
+
 
 
   add(item: any): void {
@@ -98,6 +105,21 @@ export class CartComponent {
   contentChange() {
     console.log(this.form1.value.couponId)
     this.showPrice = (this.originalPrice * this.form1.value.couponId.discount) - this.form1.value.couponId.priceOff
+  }
+
+  goCheckOut(): void {
+    let checkList = []
+    this.buyProduct.forEach(x => {
+      const check = this.form1.get('check' + x.productId)?.value
+      checkList.push(check)
+    })
+    if(checkList.length == 0){
+      window.alert('未選取商品')
+    }else{
+      this.router.navigate(['../checkout'], { relativeTo: this.route });
+    }
+
+
   }
 
 

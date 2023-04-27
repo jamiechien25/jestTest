@@ -1,3 +1,4 @@
+import { product } from '../interfaces/product';
 import { coupon } from './../interfaces/coupon';
 import { Injectable } from '@angular/core';
 
@@ -8,6 +9,7 @@ export class CartServiceService {
 
   Info: any[] = [];
   product: any;
+  CheckOutList : product[] = []
 
   couponList: any[] = [
     {
@@ -57,14 +59,20 @@ export class CartServiceService {
 
   setProduct(product: any) {
     this.Info.push(product)
-    console.log(this.Info)
   }
 
   getProduct() {
-    console.log(this.Info)
     return this.Info
   }
 
+
+  setCheckOut(product: any) {
+    this.CheckOutList = product
+  }
+
+  getCheckOut() {
+    return this.CheckOutList
+  }
 
 
 }

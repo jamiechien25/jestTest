@@ -103,8 +103,7 @@ export class ProductComponent implements OnInit {
     }
     console.log(abcArray)
     this.cartService.setProduct(abcArray)
-    // console.log(item)
-    // console.log(this.productCount)
+
   }
 
   add(item: any): void {

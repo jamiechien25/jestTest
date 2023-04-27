@@ -8,3 +8,5 @@ export interface product {
   addCart(productId: string, count: string): void;
   getcoupon(productId: string): void;
 }
+
+
