@@ -8,14 +8,7 @@
   </div>
 
   <form [formGroup]="form1">
-  <div class="list-area">
-    <div class="list" *ngFor="let item of cartProduct ; let i = index">
-      <mat-checkbox formControlName="{{'check'+item.productId}}" (ngModelChange)="take($event,item)" ></mat-checkbox>
-      <p>{{item.productName}}</p>
-      <div class="number-button-area">
-        <button (click)="minus(item)">-</button>
-        <div (ngModel)="item.productCount" class="number-show">{{item.productCount}}</div>
-        <button (click)="add(item)">+</button>
+
     <div class="list-area">
       <div class="list" *ngFor="let item of cartProduct ; let i = index">
         <mat-checkbox formControlName="check" (ngModelChange)="take($event.checked,item)"></mat-checkbox>
@@ -38,7 +31,7 @@
 
     <p style="margin: 10px;">總金額 : {{showPrice}}</p>
 
-    <button (click)="showCart()" class="buy-button">結帳</button>
+    <button (click)="goCheckOut()" class="buy-button">結帳</button>
   </form>
 </div>
 
