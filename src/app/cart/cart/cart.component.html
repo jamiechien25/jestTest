@@ -10,7 +10,7 @@
   <form [formGroup]="form1">
     <div class="list-area">
       <div class="list" *ngFor="let item of cartProduct ; let i = index">
-        <mat-checkbox formControlName="check" (change)="take($event.checked,item)"></mat-checkbox>
+        <mat-checkbox formControlName="check" (ngModelChange)="take($event.checked,item)"></mat-checkbox>
         <p>{{item.productName}}</p>
         <div class="number-button-area">
           <button (click)="minus(item)">-</button>
@@ -19,19 +19,19 @@
         </div>
       </div>
     </div>
+
+
+    <div class="coupon-select">
+      <mat-label>Choose coupon</mat-label>
+      <mat-select formControlName="couponId" (selectionChange)="contentChange()">
+        <mat-option *ngFor="let item of items" [value]="item">{{item.couponDesc}}</mat-option>
+      </mat-select>
+    </div>
+
+    <p style="margin: 10px;">總金額 : {{showPrice}}</p>
+
+    <button (click)="showCart()" class="buy-button">結帳</button>
   </form>
-
-
-  <div class="coupon-select">
-    <mat-label>Choose coupon</mat-label>
-    <mat-select>
-      <mat-option *ngFor="let item of items" [value]="item.couponId">{{item.couponDesc}}</mat-option>
-    </mat-select>
-  </div>
-
-  <p style="margin: 10px;">總金額 : {{totalAmt}}</p>
-
-  <button (click)="showCart()" class="buy-button">結帳</button>
 </div>
 
 

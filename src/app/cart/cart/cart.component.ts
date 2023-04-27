@@ -16,10 +16,12 @@ export class CartComponent {
   showNumber: number = 1
   items: any;
   checkAll: boolean = false;
-  totalAmt: any;
+  originalPrice: any;
+  showPrice: any;
 
   form1 = new FormGroup({
     check: new FormControl(''),
+    couponId: new FormControl('')
   });
 
   constructor(
@@ -29,13 +31,21 @@ export class CartComponent {
   ) { }
 
   ngOnInit(): void {
+
     this.cartService.getProduct()
     this.cartProduct = this.cartService.getProduct()
     this.items = this.cartService.couponList
     console.log('this.items', this.items)
-    this.totalAmt = this.cartService.Info.reduce((total, { productPrice, productCount }) => {
-      return total + productPrice * productCount
+    console.log('this.cartService.Info', this.cartService.Info)
+    // this.totalAmt = this.cartService.Info.reduce((total, { productPrice, productCount }) => {
+    //   return total + productPrice * productCount
+    // }, 0)
+    this.originalPrice = this.cartService.Info.reduce((total, item) => {
+      console.log('total', total)
+      console.log('item', item)
+      return total + item.productPrice * item.productCount
     }, 0)
+    this.showPrice = this.originalPrice
   }
 
   deleteAll(): void {
@@ -45,9 +55,9 @@ export class CartComponent {
 
   selectAll(): void {
     this.form1.get('check')?.setValue(true)
-    if (this.form1.get('check')?.value == true) {
-      this.checkAll = true
-    }
+    // if (this.form1.get('check')?.value == true) {
+    //   this.checkAll = true
+    // }
   }
 
   take($event: any, item: any) {
@@ -69,6 +79,7 @@ export class CartComponent {
       this.settleProduct = this.buyProduct
     }
     console.log(this.settleProduct)
+
   }
 
 
@@ -82,6 +93,11 @@ export class CartComponent {
 
   goProduct(): void {
     this.router.navigate(['../'], { relativeTo: this.route });
+  }
+
+  contentChange() {
+    console.log(this.form1.value.couponId)
+    this.showPrice = (this.originalPrice * this.form1.value.couponId.discount) - this.form1.value.couponId.priceOff
   }
 
 
