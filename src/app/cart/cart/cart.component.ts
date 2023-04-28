@@ -36,13 +36,14 @@ export class CartComponent {
 
     this.cartService.getProduct()
     this.cartProduct = this.cartService.getProduct()
+    console.log(this.cartProduct)
     this.items = this.cartService.couponList
     console.log('this.items', this.items)
     console.log('this.cartService.Info', this.cartService.Info)
     // this.totalAmt = this.cartService.Info.reduce((total, { productPrice, productCount }) => {
     //   return total + productPrice * productCount
     // }, 0)
-    this.originalPrice = this.cartService.Info.reduce((total, item) => {
+    this.originalPrice = this.cartProduct.reduce((total, item) => {
       console.log('total', total)
       console.log('item', item)
       return total + item.productPrice * item.productCount
@@ -81,7 +82,7 @@ export class CartComponent {
       this.buyProduct = this.buyProduct.filter(x => x.productId !== item.productId);
     }
 
-    this.cartService.setCheckOut(this.buyProduct)
+    this.cartService.setCheckOut(this.buyProduct,this.showPrice)
 
   }
 

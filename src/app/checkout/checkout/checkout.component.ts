@@ -10,6 +10,7 @@ import { CartServiceService } from 'src/app/services/cart-service.service';
 export class CheckoutComponent {
 
   checkOutList : product[]=[]
+  total:number =0
 
   constructor(
     private cartService: CartServiceService,
@@ -17,6 +18,7 @@ export class CheckoutComponent {
 
   ngOnInit(): void {
     this.checkOutList = this.cartService.getCheckOut()
+    this.total = this.cartService.getTotal()
   }
 
 }

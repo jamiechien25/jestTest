@@ -1,4 +1,7 @@
+<div style="width:50% ; margin: 0 auto;" >
 <p>結帳商品</p>
 <div *ngFor="let settle of checkOutList">
   <div>{{settle.productName}} <span>${{settle.productPrice * settle.productCount}}</span></div>
+</div>
+{{total}}
 </div>

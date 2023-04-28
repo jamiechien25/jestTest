@@ -10,6 +10,7 @@ export class CartServiceService {
   Info: any[] = [];
   product: any;
   CheckOutList : product[] = []
+  total:number = 0
 
   couponList: any[] = [
     {
@@ -66,8 +67,13 @@ export class CartServiceService {
   }
 
 
-  setCheckOut(product: any) {
+  setCheckOut(product: any,total:number) {
     this.CheckOutList = product
+    this.total = total
+  }
+
+  getTotal(){
+    return this.total
   }
 
   getCheckOut() {
